@@ -2,7 +2,7 @@ name: Run AI Chat on Messenger Account
 
 on:
   schedule:
-    - cron: "0 2,6,10,14,18,22 * * *"  # Run every 4 hours
+    - cron: "0 1-23/4 * * *"  # Run every 4 hours
   workflow_dispatch:
     inputs:
       username:
@@ -46,10 +46,10 @@ jobs:
   run-aichat:
     runs-on: windows-latest
     env:
-      SCPDIR: ${{ github.workspace }}\scoped_dir
-      COOKIESFILE: ${{ github.workspace }}\cookies.json
-      FBINFOSFILE: ${{ github.workspace }}\facebook_infos.bin
-      SELF_FBINFOFILE: ${{ github.workspace }}\self_facebook_info.bin
+      SCPDIR: ${{ github.workspace }}/scoped_dir
+      COOKIESFILE: ${{ github.workspace }}/cookies.json
+      FBINFOSFILE: ${{ github.workspace }}/facebook_infos.bin
+      SELF_FBINFOFILE: ${{ github.workspace }}/self_facebook_info.bin
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # Pass GitHub Token
       GITHUB_REPO: ${{ github.repository }}     # Pass the repository (owner/repo)
       STORAGE_BRANCE: caches/schedule
@@ -60,7 +60,7 @@ jobs:
       - name: Checkout HuskyDG Automatic FB
         uses: actions/checkout@v3
         with:
-          repository: HuskyDG/gemini_fbchat_bot
+          repository: vincentng295/gemini_fbchat
           ref: main # Optional: main or tags name
 
       # Set up Python
