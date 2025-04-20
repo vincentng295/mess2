@@ -2,7 +2,7 @@ name: Run AI Chat on Messenger Account
 
 on:
   schedule:
-    - cron: "30 3-23/4 * * *"  # Run every 4 hours
+    - cron: "30 0-23/4 * * *"  # Run every 4 hours
   workflow_dispatch:
     inputs:
       username:
