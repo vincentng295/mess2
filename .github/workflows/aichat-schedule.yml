@@ -1,6 +1,8 @@
 name: Run AI Chat on Messenger Account
 
 on:
+  schedule:
+    - cron: "0 */4 * * *"  # Run every 4 hours, you can modify
   workflow_dispatch:
     inputs:
       username:
@@ -51,12 +53,12 @@ jobs:
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # Pass GitHub Token
       GITHUB_REPO: ${{ github.repository }}     # Pass the repository (owner/repo)
       STORAGE_BRANCE: caches/schedule
-      PAT : ${{ secrets.PAT }} # Pass PAT Token
       USE_ENV_SETUP: ${{ github.event_name == 'workflow_dispatch' && 'true' || 'false' }}
+      PASSWORD: ${{ secrets.PASSWORD }} # Decrypt key
 
     steps:
       # Checkout the repository
-      - name: Checkout HuskyDG Automatic FB
+      - name: Checkout Gemini FBChat
         uses: actions/checkout@v3
         with:
           repository: vincentng295/gemini_fbchat
@@ -100,7 +102,6 @@ jobs:
           python fb_getcookies_test.py
         env:
           PYTHONUNBUFFERED: "1"
-          PASSWORD: ${{ secrets.PASSWORD }} # Decrypt key
 
       - name: Cache scoped_dir
         if: ${{ github.event_name == 'schedule' || inputs.check_only != true }}
