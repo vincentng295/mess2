@@ -1,4 +1,4 @@
-name: Run AI Chat 001
+name: Run AI Chat on Messenger Account
 
 on:
   workflow_dispatch:
@@ -18,8 +18,8 @@ on:
         description: "Code to decrypt end-to-end encrypted conservation"
         required: false
         type: number
-      alt_account:
-        description: "Account index (0 for main)"
+      facebook_uid:
+        description: "Facebook Profile UID"
         default: "0"
         required: false
         type: number
